@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 </head>
 <body>
@@ -14,7 +15,7 @@
   <br>
   <p>THESE ARE THE INSTRUCTIONS!</p>
   <br>
-  <div id="comp-guess"></div>
+  <div id="comp-guess">Computer number guess: </div>
   <div class="score">
     <div id="wins">Wins: </div>
     <div id="losses">Losses: </div>
@@ -22,14 +23,14 @@
   <br>
   <br>
   <div class="gems">
-    <div id="gem1"></div>  <!-- THESE WILL BE BUTTONS -->
-    <div id="gem2"></div>
-    <div id="gem3"></div>
-    <div id="gem4"></div>
+    <div id="gem1"><img src="assets/images/1.jpeg"></div>
+    <div id="gem2"><img src="assets/images/2.jpeg"></div>
+    <div id="gem3"><img src="assets/images/3.jpeg"></div>
+    <div id="gem4"><img src="assets/images/4.jpeg"></div>
   </div>
   <br>
   <br>
-  <div id="user-total"></div>
+  <div id="user-total">Total: </div>
 
 
 
@@ -42,7 +43,7 @@ $(document).ready(function() {
 var win = 0;
 var loss = 0;
 var compGuess;
-var userTotal = 66;
+var userTotal = 0;
 var gem1;
 var gem2;
 var gem3;
@@ -54,13 +55,53 @@ var computerGuess = function getRndInteger (max, min) {
   compGuess = Math.floor(Math.random() * (max - min) + min);
 }(19,120); // Immediate Invoke
 
+var gemValue1 = function getRndInteger (max, min) {
+  gem1 = Math.floor(Math.random() * (max - min) + min);
+}(1,12); // Immediate Invoke
+
+var gemValue2 = function getRndInteger (max, min) {
+  gem2 = Math.floor(Math.random() * (max - min) + min);
+}(1,12); // Immediate Invoke
+
+var gemValue3 = function getRndInteger (max, min) {
+  gem3 = Math.floor(Math.random() * (max - min) + min);
+}(1,12); // Immediate Invoke
+
+var gemValue4 = function getRndInteger (max, min) {
+  gem4 = Math.floor(Math.random() * (max - min) + min);
+}(1,12); // Immediate Invoke
+
 
 var appendCompGuess = function() {
 $("#comp-guess").append(compGuess);
 }(); // Immediate Invoke
 
+// Random Gem Value Assign to Image
 
-function scoreboard() {
+$("#gem1").on("click", function() {
+  userTotal = userTotal + gem1;
+  $("#user-total").html("Total: " + userTotal);
+});
+
+$("#gem2").on("click", function() {
+  userTotal = userTotal + gem2;
+  $("#user-total").html("Total: " + userTotal);
+});
+
+$("#gem3").on("click", function() {
+  userTotal = userTotal + gem3;
+  $("#user-total").html("Total: " + userTotal);
+});
+
+$("#gem4").on("click", function() {
+  userTotal = userTotal + gem4;
+  $("#user-total").html("Total: " + userTotal);
+});
+
+
+
+var scoreboard = function() {
+  console.log("userTotal", typeof(userTotal));
   if (userTotal == compGuess) {
     win++;
     $("#wins").append(win)
@@ -70,7 +111,8 @@ function scoreboard() {
     $("#losses").append(loss)
   }
 }
-scoreboard();
+
+scoreboard()
 
 
 
