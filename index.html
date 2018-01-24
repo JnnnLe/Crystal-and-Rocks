@@ -2,6 +2,12 @@
 <html>
 <head>
   <title>Gem Game</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
 </head>
 <body>
   <h1>My Awesome Game</h1>
@@ -26,6 +32,8 @@
 
 <script type="text/javascript">
   
+$(document).ready(function() {
+
 // Declaring Global Variables
 
 var win = 0;
@@ -40,8 +48,14 @@ var gem4;
 // Random Computer Guess Function
 
 var computerGuess = function getRndInteger (max, min) {
-  return Math.floor(Math.random() * (max - min) + min);
-}(19,120);
+  compGuess = Math.floor(Math.random() * (max - min) + min);
+}(19,120); // Immediate Invoke
+
+
+var appendCompGuess = function() {
+$("#comp-guess").append(compGuess);
+}(); // Immediate Invoke
+
 
 function scoreboard() {
   if (userTotal == compGuess) {
@@ -55,7 +69,7 @@ function scoreboard() {
 
 
 
-
+})
 </script>
 
 
