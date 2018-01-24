@@ -15,7 +15,10 @@
   <p>THESE ARE THE INSTRUCTIONS!</p>
   <br>
   <div id="comp-guess"></div>
-  <div id="score"></div>
+  <div class="score">
+    <div id="wins">Wins: </div>
+    <div id="losses">Losses: </div>
+  </div>
   <br>
   <br>
   <div class="gems">
@@ -39,7 +42,7 @@ $(document).ready(function() {
 var win = 0;
 var loss = 0;
 var compGuess;
-var userTotal;
+var userTotal = 66;
 var gem1;
 var gem2;
 var gem3;
@@ -60,12 +63,14 @@ $("#comp-guess").append(compGuess);
 function scoreboard() {
   if (userTotal == compGuess) {
     win++;
+    $("#wins").append(win)
   }
   if (userTotal > compGuess) {
-    loss--;
+    loss++;
+    $("#losses").append(loss)
   }
 }
-
+scoreboard();
 
 
 
