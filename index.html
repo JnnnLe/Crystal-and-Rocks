@@ -6,8 +6,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+  //jQuery, js(bottom), local
 
 </head>
 <body>
@@ -15,9 +17,9 @@
   <br>
   <p>THESE ARE THE INSTRUCTIONS!</p>
   <br>
-  <div id="comp-guess">Computer number guess: </div>
+  <div id="comp-guess"></div>
   <div class="score">
-    <div id="wins">Wins: </div>
+    <div id="wins"></div>
     <div id="losses">Losses: </div>
   </div>
   <br>
@@ -49,11 +51,13 @@ var gem2;
 var gem3;
 var gem4;
 
+
 // Random Computer Guess Function
 
-var computerGuess = function getRndInteger (max, min) {
+var computerGuess = function (max, min) {
   compGuess = Math.floor(Math.random() * (max - min) + min);
-}(19,120); // Immediate Invoke
+}; // Immediate Invoke
+computerGuess(19,120);
 
 var gemValue1 = function getRndInteger (max, min) {
   gem1 = Math.floor(Math.random() * (max - min) + min);
@@ -76,47 +80,80 @@ var appendCompGuess = function() {
 $("#comp-guess").append(compGuess);
 }(); // Immediate Invoke
 
+
 // Random Gem Value Assign to Image
 
 $("#gem1").on("click", function() {
   userTotal = userTotal + gem1;
   $("#user-total").html("Total: " + userTotal);
+  updateScore();
+  compareUserandComp();
 });
 
 $("#gem2").on("click", function() {
   userTotal = userTotal + gem2;
   $("#user-total").html("Total: " + userTotal);
+  updateScore();
+  compareUserandComp();
 });
 
 $("#gem3").on("click", function() {
   userTotal = userTotal + gem3;
   $("#user-total").html("Total: " + userTotal);
+  updateScore();
+  compareUserandComp();
 });
 
 $("#gem4").on("click", function() {
   userTotal = userTotal + gem4;
   $("#user-total").html("Total: " + userTotal);
+  updateScore();
+  compareUserandComp();
 });
 
 
+//Update Wins and Losses
 
-var scoreboard = function() {
-  console.log("userTotal", typeof(userTotal));
-  if (userTotal == compGuess) {
-    win++;
-    $("#wins").append(win)
-  }
+// var winning = $("#wins").append(win);
+// var losing = $("#losses").append(loss);
+
+// var updateScore = function () {
+//   console.log("userTotal", userTotal)
+//   userTotal > compGuess ? console.log("inside") : console.log("out");
+// }();
+
+
+//.gems when clicked updateScore()
+var updateScore = function() {
+  $("#wins").html("Wins: " + win);
+  $("#losses").html("Loss: " + loss);
+  $("#comp-guess").html("Computer number guess: " + compGuess);
+};
+
+var compareUserandComp = function() {
+  console.log(userTotal, compGuess, win, loss)
   if (userTotal > compGuess) {
     loss++;
-    $("#losses").append(loss)
+    reset();
+  } else if (userTotal === compGuess) {
+    win++;
+    reset();
   }
 }
 
-scoreboard()
+function reset() {
+  userTotal = 0;
+  var computerGuess = function getRndInteger (max, min) {
+  compGuess = Math.floor(Math.random() * (max - min) + min);
+}(19,120); // 
+};
 
+updateScore();
+//triggered every click 
+ //test W/L 
+ //update view(score)
 
-
-})
+});
 </script>
 
 
