@@ -16,7 +16,7 @@ var gem4;
 
 var computerGuess = function (max, min) {
   compGuess = Math.floor(Math.random() * (max - min) + min);
-}; // Immediate Invoke
+}; 
 computerGuess(120,19);
 
   
@@ -35,7 +35,7 @@ $("#comp-guess").append(compGuess);
 
 
 // Random Gem Value Assign to Image
-//$(this).data("gem-num")
+
 $("#gem1").on("click", function() {
   userTotal = userTotal + gem1;
   $("#user-total").html("Total: " + userTotal);
@@ -70,6 +70,7 @@ var updateScore = function() {
   $("#losses").html("Loss: " + loss);
   $("#comp-guess").html("Computer number guess: " + compGuess);
 };
+
  var reset = function() {
   userTotal = 0;
   computerGuess(120, 19); 
@@ -87,13 +88,6 @@ var compareUserandComp = function() {
   }
 }
 
-
 updateScore();
 
-//triggered every click 
- //test W/L 
- //update view(score)
-
-
-//closes doc
 });
